@@ -1,14 +1,14 @@
 package net.coreprotect.utility;
 
+import net.coreprotect.language.Phrase;
+import net.coreprotect.language.Selector;
+import org.bukkit.command.ConsoleCommandSender;
+
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
-
-import org.bukkit.command.ConsoleCommandSender;
-
-import net.coreprotect.language.Phrase;
 
 public class ChatUtils {
 
@@ -142,21 +142,21 @@ public class ChatUtils {
         // minutes
         timeSince = timeSince / 60;
         if (timeSince < 60.0) {
-            message.append(Phrase.build(Phrase.LOOKUP_TIME, decimalFormat.format(timeSince) + Phrase.TIME_UNIT_MINUTE.getTranslatedPhrase()));
+            message.append(Phrase.build(Phrase.LOOKUP_TIME, decimalFormat.format(timeSince) + Phrase.build(Phrase.TIME_UNITS, Selector.FIRST)));
         }
 
         // hours
         if (message.length() == 0) {
             timeSince = timeSince / 60;
             if (timeSince < 24.0) {
-                message.append(Phrase.build(Phrase.LOOKUP_TIME, decimalFormat.format(timeSince) + Phrase.TIME_UNIT_HOUR.getTranslatedPhrase()));
+                message.append(Phrase.build(Phrase.LOOKUP_TIME, decimalFormat.format(timeSince) + Phrase.build(Phrase.TIME_UNITS, Selector.SECOND)));
             }
         }
 
         // days
         if (message.length() == 0) {
             timeSince = timeSince / 24;
-            message.append(Phrase.build(Phrase.LOOKUP_TIME, decimalFormat.format(timeSince) + Phrase.TIME_UNIT_DAY.getTranslatedPhrase()));
+            message.append(Phrase.build(Phrase.LOOKUP_TIME, decimalFormat.format(timeSince) + Phrase.build(Phrase.TIME_UNITS, Selector.THIRD)));
         }
 
         if (component) {
